@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.button {
+  @include reset-input;
+  margin: 0 0 0 10px;
+  font-size: 16px;
+  color: #176afb;
+  cursor: pointer;
+  padding: 5px 10px;
+  border: 1px solid #176afb;
+  border-radius: 5px;
+}
+
+.buttonActive {
+  background: #176afb;
+  color: #fff;
+}

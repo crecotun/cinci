@@ -1,0 +1,13 @@
+.container {
+  overflow: hidden;
+  border: 1px solid #c9c9c9;
+  border-radius: 5px;
+}
+
+.item {
+  border-top: 1px solid #c9c9c9;
+
+  &:first-child {
+    border-top: 0;
+  }
+}

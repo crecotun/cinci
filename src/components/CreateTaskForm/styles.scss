@@ -1,0 +1,30 @@
+.container {
+  display: flex;
+  border-radius: 5px;
+  position: relative;
+  z-index: 10;
+}
+
+.submit {
+  @include reset-input;
+  font-size: 16px;
+  background-color: #176afb;
+  cursor: pointer;
+  color: #fff;
+  padding: 15px 20px;
+  border-radius: 0 5px 5px 0;
+}
+
+.input {
+  @include reset-input;
+  flex: 1 0 0;
+  font-size: 16px;
+  padding: 15px;
+  border: 1px solid #c9c9c9;
+  border-right: 0;
+  border-radius: 5px 0 0 5px;
+
+  &:focus {
+    border-color: #176afb;
+  }
+}
