@@ -57,8 +57,11 @@ class CreateTaskForm extends React.Component<
   }
 }
 
-export default inject(({ tasksStore }) => {
+export default inject(({ tasksStore, service }) => {
   return {
-    addTask: tasksStore.addTask,
+    addTask: ({ text }: { text: string }) => {
+      tasksStore.addTask({ text, isDone: false })
+      service.tasks.storeTasks(tasksStore.tasks)
+    },
   }
 })(CreateTaskForm)

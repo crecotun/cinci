@@ -5,3 +5,9 @@ export type TaskType = {
 }
 
 export type TasksFilterType = 'all' | 'completed' | 'uncompleted'
+
+declare namespace NodeJS {
+  interface Process {
+    browser: boolean
+  }
+}

@@ -37,6 +37,11 @@ export default class Tasks {
     this.filter = filter
   }
 
+  @action
+  hydrate(tasks: TaskType[]): Task[] {
+    return tasks.map(this.addTask)
+  }
+
   @computed
   public get completedTasks(): Task[] {
     return this.tasks.filter((task: Task) => task.isDone === true)

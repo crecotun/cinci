@@ -36,7 +36,7 @@ const Task: React.FunctionComponent<TaskProps> = ({
 }
 
 export default inject(
-  ({ tasksStore }: { tasksStore: TasksStore }, { id }: { id: string }) => {
+  ({ tasksStore, service }, { id }: { id: string }) => {
     const task = tasksStore.findTaskById(id)
 
     if (!task) {
@@ -48,10 +48,11 @@ export default inject(
       isDone: task.isDone,
       toggleTask: () => {
         task.isDone ? task.setUndone() : task.setDone()
+        service.tasks.storeTasks(tasksStore.tasks)
       },
       deleteTask: (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault()
-        tasksStore.removeTaskById(id)
+        service.tasks.removeTaskById(id)
       },
     }
   },
