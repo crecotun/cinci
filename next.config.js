@@ -9,8 +9,8 @@ module.exports = withTypescript(
     cssModules: true,
     sassLoaderOptions: {
       data: `
-        @import 'src/styles/mixins/index.scss';
-      `
+        @import 'src/views/styles/mixins/index.scss';
+      `,
     },
   }),
 )

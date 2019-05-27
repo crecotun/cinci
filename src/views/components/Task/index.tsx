@@ -1,5 +1,4 @@
 import * as React from 'react'
-import TasksStore from 'src/store/features/Tasks'
 import { inject } from 'src/utils/storeInject'
 import styles from './styles.scss'
 import classnames from 'classnames'
@@ -36,7 +35,7 @@ const Task: React.FunctionComponent<TaskProps> = ({
 }
 
 export default inject(
-  ({ tasksStore }: { tasksStore: TasksStore }, { id }: { id: string }) => {
+  ({ tasksStore, application }, { id }: { id: string }) => {
     const task = tasksStore.findTaskById(id)
 
     if (!task) {
@@ -48,10 +47,11 @@ export default inject(
       isDone: task.isDone,
       toggleTask: () => {
         task.isDone ? task.setUndone() : task.setDone()
+        application.tasks.storeTasks(tasksStore.tasks)
       },
       deleteTask: (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault()
-        tasksStore.removeTaskById(id)
+        application.tasks.removeTaskById(id)
       },
     }
   },
