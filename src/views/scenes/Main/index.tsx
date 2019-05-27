@@ -1,18 +1,18 @@
 import * as React from 'react'
-import Tasks from 'src/components/Tasks'
-import CreateTaskForm from 'src/components/CreateTaskForm'
+import Tasks from 'src/views/components/Tasks'
+import CreateTaskForm from 'src/views/components/CreateTaskForm'
 import styles from './styles.scss'
-import Toolbar from 'src/components/Toolbar'
-import { IService } from 'src/services'
+import Toolbar from 'src/views/components/Toolbar'
 import { inject } from 'src/utils/storeInject'
+import { ApplicationType } from 'src/app'
 
 type PropsType = {
-  service: IService
+  application: ApplicationType
 }
 
 class Main extends React.Component<PropsType> {
   async componentDidMount() {
-    await this.props.service.tasks.requestTasks()
+    await this.props.application.tasks.requestTasks()
   }
 
   render() {
@@ -32,4 +32,4 @@ class Main extends React.Component<PropsType> {
   }
 }
 
-export default inject(({ service }) => ({ service }))(Main)
+export default inject(({ application }) => ({ application }))(Main)

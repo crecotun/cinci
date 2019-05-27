@@ -1,13 +1,13 @@
 import { useStaticRendering } from 'mobx-react'
 import TasksStore from './features/Tasks'
-import { IService } from 'src/services'
+import { ApplicationType } from 'src/app'
 
 const isServer = typeof window === 'undefined'
 useStaticRendering(isServer)
 
 export class RootStore {
   public tasksStore: TasksStore
-  public service: IService
+  public application: ApplicationType
 
   constructor() {
     this.tasksStore = new TasksStore()

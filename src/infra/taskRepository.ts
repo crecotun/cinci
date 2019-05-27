@@ -1,7 +1,7 @@
 import { TaskType } from 'src/types'
 
-class Provider {
-  fetchTasks(): TaskType[] {
+class TaskRepository {
+  fetchAll(): TaskType[] {
     const tasks = window.localStorage.getItem('tasks')
 
     if (!tasks) {
@@ -17,4 +17,4 @@ class Provider {
   }
 }
 
-export default Provider
+export default TaskRepository

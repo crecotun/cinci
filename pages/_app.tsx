@@ -2,48 +2,48 @@ import App, { Container } from 'next/app'
 import React from 'react'
 import { initializeStore } from 'src/store'
 import { Provider } from 'mobx-react'
-import initializeServices, { IService } from 'src/services'
+import initializeApplication, { ApplicationType } from 'src/app'
 
-import 'src/styles/global/index.scss'
+import 'src/views/styles/global/index.scss'
 
 class MyMobxApp extends App {
   static async getInitialProps(appContext: any) {
     // Get or Create the store with `undefined` as initialState
     // This allows you to set a custom default initialState
     const mobxStore = initializeStore()
-    const service = initializeServices(mobxStore)
-    mobxStore.service = service
+    const application = initializeApplication(mobxStore)
+    mobxStore.application = application
     // Provide the store to getInitialProps of pages
     appContext.ctx.mobxStore = mobxStore
-    appContext.ctx.services = service
+    appContext.ctx.application = application
 
     let appProps = await App.getInitialProps(appContext)
 
     return {
       ...appProps,
       initialMobxState: mobxStore,
-      service,
+      application,
     }
   }
 
   private mobxStore: any
-  private service: IService
+  private application: ApplicationType
 
   constructor(props: any) {
     super(props)
     const isServer = typeof window === 'undefined'
     this.mobxStore = isServer ? props.initialMobxState : initializeStore()
-    this.service = isServer
-      ? props.services
-      : initializeServices(this.mobxStore)
-    this.mobxStore.service = this.service
+    this.application = isServer
+      ? props.application
+      : initializeApplication(this.mobxStore)
+    this.mobxStore.application = this.application
   }
 
   render() {
     const { Component, pageProps } = this.props
     return (
       <Container>
-        <Provider {...this.mobxStore} {...this.service}>
+        <Provider {...this.mobxStore} {...this.application}>
           <Component {...pageProps} />
         </Provider>
       </Container>

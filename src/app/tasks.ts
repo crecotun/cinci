@@ -1,15 +1,15 @@
 import { RootStore } from 'src/store'
-import Provider from '../providers'
 import { TaskType } from 'src/types'
 import { toJS } from 'mobx'
+import { InfrastuctureType } from 'src/infra'
 
-export default function createTasksEndpoint(
+export default function createTaskInteractor(
   store: RootStore,
-  provider: Provider,
+  infra: InfrastuctureType,
 ) {
   return {
     async requestTasks() {
-      const tasks: TaskType[] = await provider.fetchTasks()
+      const tasks: TaskType[] = await infra.tasks.fetchAll()
 
       if (!tasks) {
         return []
@@ -25,7 +25,7 @@ export default function createTasksEndpoint(
 
     async storeTasks(tasks: TaskType[]) {
       const stringifiedJSON = JSON.stringify(toJS(tasks))
-      await provider.storeTasks(stringifiedJSON)
+      await infra.tasks.storeTasks(stringifiedJSON)
     },
   }
 }

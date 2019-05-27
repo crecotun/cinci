@@ -1,3 +1,3 @@
-import Main from 'src/scenes/Main'
+import Main from 'src/views/scenes/Main'
 
 export default Main
