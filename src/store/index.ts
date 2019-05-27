@@ -1,6 +1,6 @@
 import { useStaticRendering } from 'mobx-react'
 import TasksStore from './features/Tasks'
-import { ApplicationType } from 'src/app'
+import { ApplicationType } from 'src/application'
 
 const isServer = typeof window === 'undefined'
 useStaticRendering(isServer)

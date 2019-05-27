@@ -4,7 +4,7 @@ import CreateTaskForm from 'src/views/components/CreateTaskForm'
 import styles from './styles.scss'
 import Toolbar from 'src/views/components/Toolbar'
 import { inject } from 'src/utils/storeInject'
-import { ApplicationType } from 'src/app'
+import { ApplicationType } from 'src/application'
 
 type PropsType = {
   application: ApplicationType

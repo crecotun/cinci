@@ -1,7 +1,7 @@
 import { RootStore } from 'src/store'
 import { TaskType } from 'src/types'
 import { toJS } from 'mobx'
-import { InfrastuctureType } from 'src/infra'
+import { InfrastuctureType } from 'src/infrastructure'
 
 export default function createTaskInteractor(
   store: RootStore,

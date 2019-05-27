@@ -1,5 +1,4 @@
 import * as React from 'react'
-import TasksStore from 'src/store/features/Tasks'
 import { inject } from 'src/utils/storeInject'
 import styles from './styles.scss'
 import classnames from 'classnames'

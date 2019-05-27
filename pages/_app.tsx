@@ -2,7 +2,7 @@ import App, { Container } from 'next/app'
 import React from 'react'
 import { initializeStore } from 'src/store'
 import { Provider } from 'mobx-react'
-import initializeApplication, { ApplicationType } from 'src/app'
+import initializeApplication, { ApplicationType } from 'src/application'
 
 import 'src/views/styles/global/index.scss'
 
