@@ -7,6 +7,7 @@ type TaskProps = {
   id: string
   text: string
   isDone: boolean
+  estimation: number
   toggleTask: () => void
   deleteTask: () => void
 }
@@ -14,6 +15,7 @@ type TaskProps = {
 const Task: React.FunctionComponent<TaskProps> = ({
   text,
   isDone,
+  estimation,
   toggleTask,
   deleteTask,
 }) => {
@@ -24,6 +26,8 @@ const Task: React.FunctionComponent<TaskProps> = ({
   return (
     <div className={containerClass}>
       <span className={styles.text}>{text}</span>
+      {estimation && <span className={styles.text}>{`${estimation} min`}</span>}
+
       <button type="button" className={styles.delete} onClick={deleteTask}>
         Delete
       </button>
@@ -44,6 +48,7 @@ export default inject(
 
     return {
       text: task.text,
+      estimation: task.estimation,
       isDone: task.isDone,
       toggleTask: () => {
         task.isDone ? task.setUndone() : task.setDone()

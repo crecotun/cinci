@@ -1,26 +1,29 @@
 import * as React from 'react'
 import { inject } from 'src/utils/storeInject'
 import styles from './styles.scss'
+import { TaskType } from 'src/types'
 
 type CreateTaskFormProps = {
-  addTask: ({ text }: { text: string }) => void
+  addTask: ({ text, estimation }: { text: string; estimation: number }) => void
 }
 
-type CreateTaskFormState = {
-  text: string
-}
+// type CreateTaskFormState = {
+//   text: string
+//   estimation: number
+// }
 
-class CreateTaskForm extends React.Component<
-  CreateTaskFormProps,
-  CreateTaskFormState
-> {
+class CreateTaskForm extends React.Component<CreateTaskFormProps, TaskType> {
   state = {
     text: '',
+    estimation: 0,
+    isDone: false,
   }
 
   resetState = () => {
     this.setState({
       text: '',
+      estimation: 0,
+      isDone: false,
     })
   }
 
@@ -31,7 +34,9 @@ class CreateTaskForm extends React.Component<
       return
     }
 
-    this.props.addTask({ text })
+    console.log('this.state.estimation', this.state.estimation)
+
+    this.props.addTask({ text, estimation: this.state.estimation })
     this.resetState()
   }
 
@@ -39,6 +44,11 @@ class CreateTaskForm extends React.Component<
     this.setState({
       text: e.currentTarget.value,
     })
+  }
+  handleSelectChange = (e: React.FormEvent<HTMLSelectElement>) => {
+    e.preventDefault()
+
+    this.setState({ estimation: Number(e.currentTarget.value) })
   }
   render() {
     return (
@@ -49,6 +59,17 @@ class CreateTaskForm extends React.Component<
           onChange={this.handleInputChange}
           className={styles.input}
         />
+        <select
+          name="estimation"
+          id="estimation"
+          defaultValue={String(this.state.estimation)}
+          onChange={this.handleSelectChange}
+        >
+          <option value="0">Not sure</option>
+          <option value="5">5 minutes</option>
+          <option value="15">15 minutes</option>
+          <option value="30">30 minutes</option>
+        </select>
         <button type="submit" className={styles.submit}>
           Add Task
         </button>
@@ -59,8 +80,8 @@ class CreateTaskForm extends React.Component<
 
 export default inject(({ tasksStore, application }) => {
   return {
-    addTask: ({ text }: { text: string }) => {
-      tasksStore.addTask({ text, isDone: false })
+    addTask: (taskData: TaskType) => {
+      tasksStore.addTask(taskData)
       application.tasks.storeTasks(tasksStore.tasks)
     },
   }

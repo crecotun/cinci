@@ -14,17 +14,11 @@ class Task {
   @observable
   public estimation: number = 0
 
-  constructor({
-    id = uuid(),
-    text = '',
-    isDone = false,
-    estimation = 0,
-  }: TaskType) {
+  constructor({ id, text = '', isDone = false, estimation = 0 }: TaskType) {
+    this.id = id || uuid()
     if (!text) {
       throw new Error('Text was not provided')
     }
-
-    this.id = id
     this.text = text
     this.isDone = isDone
     this.estimation = estimation
