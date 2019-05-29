@@ -10,6 +10,7 @@ describe('Task', () => {
       id: '123',
       text: 'Todo',
       isDone: false,
+      estimation: 0,
     })
   })
 
@@ -34,5 +35,20 @@ describe('Task', () => {
     task.setDone()
 
     expect(task.isDone).toBe(true)
+  })
+
+  test('Create with estimation', () => {
+    const estimation = 10
+    const task = new Task({ text: 'task with estimation', estimation })
+
+    expect(task.estimation).toBe(estimation)
+  })
+
+  test('Change estimation', () => {
+    const estimation = 15
+    const task = new Task(taskData)
+    expect(task.estimation).toBe(0)
+    task.setEstimation(estimation)
+    expect(task.estimation).toBe(estimation)
   })
 })

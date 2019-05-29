@@ -11,14 +11,23 @@ class Task {
   @observable
   public isDone: boolean = false
 
-  constructor({ id, text = '', isDone = false }: TaskType) {
-    this.id = id || uuid()
+  @observable
+  public estimation: number = 0
+
+  constructor({
+    id = uuid(),
+    text = '',
+    isDone = false,
+    estimation = 0,
+  }: TaskType) {
     if (!text) {
       throw new Error('Text was not provided')
     }
 
+    this.id = id
     this.text = text
     this.isDone = isDone
+    this.estimation = estimation
   }
 
   @action
@@ -34,6 +43,15 @@ class Task {
   @action
   public setUndone() {
     this.isDone = false
+  }
+
+  @action
+  public setEstimation(estimation: number) {
+    if (!estimation) {
+      throw new Error(`Estimation wasn't specified`)
+    }
+
+    this.estimation = estimation
   }
 }
 
