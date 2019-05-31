@@ -34,8 +34,6 @@ class CreateTaskForm extends React.Component<CreateTaskFormProps, TaskType> {
       return
     }
 
-    console.log('this.state.estimation', this.state.estimation)
-
     this.props.addTask({ text, estimation: this.state.estimation })
     this.resetState()
   }
