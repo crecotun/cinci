@@ -7,7 +7,7 @@ useStaticRendering(isServer)
 
 export class RootStore {
   public tasksStore: TasksStore
-  public application: ApplicationType
+  public application!: ApplicationType
 
   constructor() {
     this.tasksStore = new TasksStore()

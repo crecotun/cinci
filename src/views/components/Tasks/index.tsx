@@ -2,7 +2,7 @@ import * as React from 'react'
 import { inject } from 'src/utils/storeInject'
 import TaskStore from 'src/store/features/Task'
 import Task from 'src/views/components/Task'
-import TasksStore from 'src/store/features/tasks'
+import TasksStore from 'src/store/features/Tasks'
 import styles from './styles.scss'
 import TasksEmptyState from '../TasksEmptyState'
 

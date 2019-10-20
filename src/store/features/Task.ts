@@ -1,5 +1,5 @@
 import { observable, action } from 'mobx'
-import * as uuid from 'uuid/v4'
+import uuid from 'uuid/v4'
 import { TaskType } from 'src/types'
 
 class Task {
